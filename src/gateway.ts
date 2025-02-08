@@ -87,7 +87,7 @@ async function getOrCreateSession(sessionId: string, serverName: string, config:
   const stdioTransport = new StdioClientTransport({
     command: config.command,
     args: config.args,
-    env: process.env as Record<string, string>
+    env: { ...process.env, ...(config.env || {}) },
   });
 
   await stdioTransport.start();
@@ -207,7 +207,7 @@ class MCPGateway {
           const stdioTransport = new StdioClientTransport({
             command: serverConfig.command,
             args: serverConfig.args,
-            env: process.env as Record<string, string>,
+            env: { ...process.env, ...(serverConfig.env || {}) },
           });
 
           // Create SSE transport with just the path portion

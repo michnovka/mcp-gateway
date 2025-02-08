@@ -32,6 +32,17 @@ servers:
       - -y
       - "@modelcontextprotocol/server-brave-search"
 
+  # use env variables
+  google-maps:
+    command: npx
+    args:
+      - -y
+      - "@modelcontextprotocol/server-google-maps"
+    env:
+      GOOGLE_MAPS_API_KEY: "<YOUR-API-KEY>"
+
+
+  # Docker
   puppeteer:
     command: docker
     args:
