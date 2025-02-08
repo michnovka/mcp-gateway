@@ -33,10 +33,15 @@ servers:
       - "@modelcontextprotocol/server-brave-search"
 
   puppeteer:
-    command: npx
+    command: docker
     args:
-      - -y
-      - "@modelcontextprotocol/server-puppeteer"
+      - run
+      - -i
+      - --rm
+      - --init
+      - -e
+      - DOCKER_CONTAINER=true
+      - mcp/puppeteer
 
   # Run MCP servers with uvx
   time:
