@@ -5,6 +5,7 @@ COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 
 # Install system dependencies
 RUN apk add --no-cache \
+    docker-cli \
     python3 \
     py3-pip \
     openssl \
@@ -35,7 +36,7 @@ ENV DOCKER_CONTAINER=true \
     PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser \
     PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 \
     PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/usr/bin/chromium-browser \
-    CHROMIUM_FLAGS="--disable-software-rasterizer --disable-dev-shm-usage" \
+    CHROMIUM_FLAGS="--disable-software-rasterizer --disable-dev-shm-usage --no-sandbox --disable-setuid-sandbox" \
     CHROME_BIN=/usr/bin/chromium-browser \
     CHROME_PATH=/usr/lib/chromium/ \
     DISPLAY=:99 \

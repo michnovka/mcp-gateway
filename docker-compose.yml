@@ -1,0 +1,14 @@
+services:
+  mcp-gateway:
+    container_name: mcp-gateway  # The name of the container
+    build: .
+    ports:
+      - "3057:3000"  # Map port 3057 on the host to port 3000 on the container
+    group_add:
+      - "998"
+    volumes:
+      - ./config.yaml:/app/config.yaml  # Bind the local config.yaml file to the container
+      - ./downloads:/downloads  # Bind the local downloads directory to the container
+      - /var/run/docker.sock:/var/run/docker.sock
+#    privileged: true
+    # Add any environment variables or configurations if needed
